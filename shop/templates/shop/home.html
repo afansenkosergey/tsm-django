@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+    Список товаров
+{% endblock %}
+
+{% block body %}
+
+<div class="row center-text">
+    {% for category in categories %}
+        <div class="col-md-5">
+            <h1><a href="{% url 'shop:category' category.pk %}">{{ category.name }}</a></h1>
+            {% if category.product_set.all %}
+                    {% for product in category.product_set.all %}
+                        <br><a class="sq" href="{% url 'shop:product' product.pk %}">{{ product.name }}</a>
+                    {% endfor %}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

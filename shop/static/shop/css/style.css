@@ -1,0 +1,15 @@
+.center-text {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+.sq{
+    text-align: center;
+    font-size: 20px
+}
+h2{
+    text-align:center;
+}
+p{
+    text-align: center;
+}

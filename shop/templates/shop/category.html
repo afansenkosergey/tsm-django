@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ category.name }}</h1>
+        <ul>
+            {% for product in products %}
+                <br><a href="{% url 'shop:product' product.pk %}">{{ product.name }}</a>
+            {% endfor %}
+        </ul>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

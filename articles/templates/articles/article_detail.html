@@ -1,0 +1,29 @@
+{% extends 'articles/base.html' %}
+
+    {% block title %}{{ article.title }}{% endblock %}
+{% block head %}{% endblock %}
+{% block body %}
+
+    <div class="position-relative m-4">
+
+        <h2>{{ article.title }}</h2>
+        {% for author in article.authors.all %}
+        <p>Автор: <a href="{% url 'articles:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }} </a></p>
+        {% endfor %}
+        <p>{{ article.text }}</p>
+        <p class="text-end">Дата публикации: {{ article.pub_date| date:'d-m-Y H:i:s' }}</p>
+        <form action="{% url 'articles:like' article.id %}" method="post">
+          {% csrf_token %}
+            <button type="submit" class="btn btn-primary position-relative">
+              Like
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ article.likes }}
+                <span class="visually-hidden">непрочитанные сообщения</span>
+              </span>
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

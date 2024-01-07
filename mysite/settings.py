@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,9 @@ SECRET_KEY = 'django-insecure-byqmynw*yetuq30c6-lmnb#e-7ot83neq*x_v*na3$1i7gov-w
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+
+ATOMIC_REQUESTS = True
 
 
 # Application definition
@@ -130,3 +135,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = reverse_lazy('articles:list')
