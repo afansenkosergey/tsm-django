@@ -8,9 +8,6 @@
                     {% if articles %}
                         {% for article in articles %}
                             <p><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></p>
-                            {% if article.is_popular %}
-                                <p>This article is popular!</p>
-                            {% endif %}
                         {% endfor %}
                     {% else %}
                         <h1>There are no articles</h1>
