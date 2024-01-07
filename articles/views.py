@@ -21,9 +21,10 @@ def detail(request, article_id: int):
     return render(request, 'articles/article_detail.html', context=context)
 
 
-def author_detail(request, author_id):
+def author_detail(request, author_id: int):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'articles/author_detail.html', {'author': author})
+
 
 def authors_page(request):
     authors = Author.objects.all()
@@ -43,7 +44,7 @@ def add_article(request):
         article_form = ArticleForm(request.POST)
         author_form = AuthorForm(request.POST)
         if article_form.is_valid() and author_form.is_valid():
-            author = author_form.save()  # Сначала сохраните автора
+            author = author_form.save()
             article = article_form.save(commit=False)
             article.author = author
             article.save()
@@ -53,4 +54,3 @@ def add_article(request):
         author_form = AuthorForm()
 
     return render(request, 'articles/add_article.html', {'article_form': article_form, 'author_form': author_form})
-

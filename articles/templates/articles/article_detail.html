@@ -4,7 +4,7 @@
 {% block head %}{% endblock %}
 {% block body %}
 
-    <div class="position-relative m-4">
+    <div class="article-container">
 
         <h2>{{ article.title }}</h2>
         {% for author in article.authors.all %}
@@ -18,7 +18,7 @@
               Like
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ article.likes }}
-                <span class="visually-hidden">непрочитанные сообщения</span>
+                <span class="visually-hidden">лайки</span>
               </span>
             </button>
         </form>

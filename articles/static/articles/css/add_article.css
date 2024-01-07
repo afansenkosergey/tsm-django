@@ -1,21 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #cdced2;
   padding: 20px;
 }
-.container{
-  display: initial;
 
+.container {
+  display: initial;
 }
+
 .container1 {
   max-width: 1070px;
   width: 100%;
@@ -23,11 +25,102 @@ body {
   margin-inline: 1rem;
 }
 
-.container2{
+.container2 {
   position: absolute;
   left: 12%;
 }
+.article-container {
+  position: relative;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.article-container h2{
+  color: #833826;
+}
+/* Общий стиль для контейнера */
+.container2 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+/* Стиль для блока статьи */
+.article {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(220, 8, 8, 0.28);
+}
+
+/* Стиль для заголовка статьи */
+.article h2 {
+  color: #007c33;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+/* Стиль для списка статей */
+.article ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Стиль для ссылок на статьи */
+.article a {
+  text-decoration: none;
+  color: #d96565; /* Синий цвет ссылок */
+}
+
+.article a:hover {
+  text-decoration: underline;
+}
+
+/* Стиль для случая, когда нет статей */
+.article h1 {
+  color: #ff0000; /* Красный цвет для заголовка, если нет статей */
+}
+
+/* Общий стиль для контейнера */
+.container3 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Стиль для заголовка страницы */
+.container3 h1 {
+  color: #749ef8;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Стиль для имени автора */
+.container3 h4 {
+  color: #000000; /* Синий цвет для имени автора */
+  margin-bottom: 10px;
+}
+
+/* Стиль для списка статей */
+.container3 ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Стиль для ссылок на статьи */
+.container3 a {
+  text-decoration: none;
+  color: #333; /* Цвет текста для ссылок на статьи */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.container3 a:hover {
+  text-decoration: underline;
+}
 .gradient-section {
   width: 50%;
   position: relative;
@@ -37,8 +130,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: #ccff99;
-  background-image:
-    radial-gradient(at 83% 69%, hsla(280, 67%, 78%, 1) 0px, transparent 50%),
+  background-image: radial-gradient(at 83% 69%, hsla(280, 67%, 78%, 1) 0px, transparent 50%),
     radial-gradient(at 9% 70%, hsla(18, 81%, 74%, 1) 0px, transparent 50%),
     radial-gradient(at 61% 52%, hsla(153, 75%, 65%, 1) 0px, transparent 50%),
     radial-gradient(at 28% 93%, hsla(321, 74%, 60%, 1) 0px, transparent 50%),
@@ -94,7 +186,8 @@ body {
   margin-bottom: 5px;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   font-size: 0.875rem;
   font-weight: 500;
   width: 100%;
@@ -127,7 +220,7 @@ body {
   align-items: center;
 }
 
-.result-container1 p{
+.result-container1 p {
   font-size: 0.875rem;
   font-weight: 500;
   color: #3461ca;
@@ -145,7 +238,6 @@ body {
 }
 
 @media screen and (max-width: 56rem) {
-
   .container1 {
     max-width: 90%;
     flex-direction: column;
@@ -195,7 +287,6 @@ body {
   .form-section button {
     font-size: 0.875rem;
   }
-
 }
 
 @media screen and (max-width: 36.25rem) {
@@ -207,4 +298,3 @@ body {
     width: 100%;
   }
 }
-
