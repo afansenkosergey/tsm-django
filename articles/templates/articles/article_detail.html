@@ -1,22 +1,23 @@
 {% extends 'articles/base.html' %}
 
-    {% block title %}{{ article.title }}{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 {% block head %}{% endblock %}
 {% block body %}
 
     <div class="article-container">
 
         <h2>{{ article.title }}</h2>
+    <h6>Автор статьи:</h6>
         {% for author in article.authors.all %}
-        <p>Автор: <a href="{% url 'articles:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }} </a></p>
+            <a href="{% url 'articles:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }} </a>
         {% endfor %}
         <p>{{ article.text }}</p>
         <p class="text-end">Дата публикации: {{ article.pub_date| date:'d-m-Y H:i:s' }}</p>
         <form action="{% url 'articles:like' article.id %}" method="post">
-          {% csrf_token %}
+            {% csrf_token %}
             <button type="submit" class="btn btn-primary position-relative">
-              Like
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                Like
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ article.likes }}
                 <span class="visually-hidden">лайки</span>
               </span>

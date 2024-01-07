@@ -5,6 +5,7 @@
        <h1>Список авторов и их статей</h1>
         {% for author in authors %}
             <h4><a href="{% url 'articles:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }}</a></h4>
+            <p>Статьи автора:</p>
             <ul>
                 {% for article in author.article_set.all %}
                     <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>

@@ -11,6 +11,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #4776E6;
   padding: 20px;
 }
 
@@ -68,7 +69,12 @@ body {
   list-style: none;
   padding: 0;
 }
-
+.article-container a{
+  text-decoration: none;
+  color: #749ef8; /* Цвет текста для ссылок на статьи */
+  display: block;
+  margin-bottom: 5px;
+}
 /* Стиль для ссылок на статьи */
 .article a {
   text-decoration: none;
@@ -124,6 +130,61 @@ body {
 .gradient-section {
   width: 50%;
   position: relative;
+}
+.container3 p{
+  color: #833826;
+}
+.container4 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #1f6a9b;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(116, 158, 248);
+}
+
+.container4 h1 {
+    color: #749ef8;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.container4 p {
+    font-size: 16px;
+    color: #333;
+}
+
+.container4 h2 {
+    color: #000000;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.container4 ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.container4 li {
+    margin-bottom: 5px;
+}
+
+.container4 a {
+    text-decoration: none;
+    color: #833826;
+}
+
+.container4 a:hover {
+    text-decoration: underline;
+}
+
+.author-photo {
+    max-width: 30%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .gradient {

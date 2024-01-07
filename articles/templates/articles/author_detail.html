@@ -1,13 +1,16 @@
 {% extends 'articles/base.html' %}
+{% load static %}
 
 {% block body %}
-
-    <h1>{{ author.first_name }} {{ author.last_name }}</h1>
-    <p>Дата рождения: {{ author.date_of_birth| date:'d.m.Y' }}</p>
-    <h2>Статьи:</h2>
-    <ul>
-        {% for article in author.article_set.all %}
-            <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container4">
+        <img src="{% static 'articles/images/author.png' %}" alt="{{ author.first_name }} {{ author.last_name }}" class="author-photo">
+        <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+        <p>Дата рождения: {{ author.date_of_birth|date:'d.m.Y' }}</p>
+        <h2>Статьи:</h2>
+        <ul>
+            {% for article in author.article_set.all %}
+                <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
