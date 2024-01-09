@@ -1,5 +1,7 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Author(models.Model):
@@ -33,3 +35,18 @@ class Article(models.Model):
         verbose_name = 'Список статей'
         verbose_name_plural = 'Список статей'
         ordering = ['text']
+
+
+# Registration and authentication
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

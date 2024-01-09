@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +7,10 @@
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #4776E6;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .container {
@@ -27,8 +25,7 @@ body {
 }
 
 .container2 {
-  position: absolute;
-  left: 12%;
+  position: initial;
 }
 .article-container {
   position: relative;

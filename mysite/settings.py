@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'articles.apps.ArticlesConfig',
     'shop.apps.ShopConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,7 @@ DATABASES = {
    }
 }
 
-
+EMAIL_FIELD = "email"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

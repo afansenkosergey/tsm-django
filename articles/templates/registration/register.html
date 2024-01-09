@@ -1,27 +1,40 @@
 {% extends 'articles/base.html' %}
 
-{% block title %}Create account{% endblock %}
+{% block title %} Registration {% endblock %}
 
 {% block body %}
-
-<form class="register" method="post">
+<main class="form-line w-50 mx-auto text-center">
+  <form method="post" action="{% url 'articles:register' %}">
     {% csrf_token %}
-        <h1>Create account</h1>
-    <div class="form-floating">
-      <input type="text" class="form-control" name="username" id="username" placeholder="User name" required>
-      <label for="username">User name</label>
+    <h1 class="h3 mb-3 fw-normal">Registration</h1>
+
+
+    <div class="form-floating mb-2 mx-auto col-md-6">
+      <input type="text" class="form-control" name="username" placeholder="Username">
+      <label for="username">Username</label>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required>
+    <div class="form-floating mb-2 mx-auto col-md-6">
+      <input type="password" class="form-control" name="password1" placeholder="Password">
       <label for="password1">Password</label>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm password" required>
-      <label for="password2">Password</label>
+      <div class="form-floating mb-3 mx-auto col-md-6">
+      <input type="password" class="form-control" name="password2" placeholder="Repeat password">
+      <label for="password2">Repeat password</label>
     </div>
 
-    <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
-</form>
-
-
+    <div class="text-center">
+      {% if messages %}
+    <ul class="alert alert-danger mx-auto col-md-6">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </ul>
+  {% endif %}
+    </div>
+      	<input class="btn btn-primary col-md-6 py-2" type="submit" value="Registration">
+  </form>
+<div class="container signin">
+    <p>Already have an account? <a href="{% url 'articles:login' %}">Sign in</a></p>
+  </div>
+</main>
 {% endblock %}

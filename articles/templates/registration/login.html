@@ -1,21 +1,35 @@
 {% extends 'articles/base.html' %}
-
-{% block title %}Login{% endblock %}
-
+{% block title %} Login {% endblock %}
 {% block body %}
-<div class="wrapper">
-   <form class="form-signin" method="post">
-       {% csrf_token %}
-      <h2 class="form-signin-heading">Please login</h2>
-      <div>
-        <input type="text" class="form-control" name="username" id="userName" placeholder="Username" required="" />
-      </div>
-      <div>
-        <input type="password" class="form-control" name="password" id="pwd" placeholder="Password" required=""/>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-   </form>
-</div>
+
+<main class="form-line w-50 mx-auto text-center">
+  <form method="post" action="{% url 'articles:login' %}">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Login in</h1>
 
 
+    <div class="form-floating mb-2 mx-auto col-md-6">
+      <input type="text" class="form-control" name="username" placeholder="Username">
+      <label for="username">Username</label>
+    </div>
+    <div class="form-floating mb-3 mx-auto col-md-6">
+      <input type="password" class="form-control" name="password" placeholder="Password">
+      <label for="password">Password</label>
+    </div>
+
+    <div class="text-center my-3">
+ {% if messages %}
+    <ul class="alert alert-danger mx-auto col-md-6">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </ul>
+  {% endif %}
+    </div>
+      	<input class="btn btn-success col-md-6 py-2" type="submit" value="Login">
+  </form>
+<div class="container signin">
+    <p>You don't have an account? <a href="{% url 'articles:register' %}">Register</a></p>
+  </div>
+</main>
 {% endblock %}

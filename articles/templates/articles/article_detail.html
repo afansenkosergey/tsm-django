@@ -4,27 +4,58 @@
 {% block head %}{% endblock %}
 {% block body %}
 
-    <div class="article-container">
-
-        <h2>{{ article.title }}</h2>
+<div class="article-container">
+    <h2>{{ article.title }}</h2>
     <h6>Автор статьи:</h6>
         {% for author in article.authors.all %}
             <a href="{% url 'articles:author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }} </a>
         {% endfor %}
-        <p>{{ article.text }}</p>
-        <p class="text-end">Дата публикации: {{ article.pub_date| date:'d-m-Y H:i:s' }}</p>
-        <form action="{% url 'articles:like' article.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary position-relative">
-                Like
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{ article.likes }}
-                <span class="visually-hidden">лайки</span>
-              </span>
-            </button>
-        </form>
-    </div>
+            <p>{{ article.text }}</p>
+            <p class="text-end">Дата публикации: {{ article.pub_date| date:'d.m.Y H:i:s' }}</p>
+    <form action="{% url 'articles:like' article.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary position-relative">
+            Like
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ article.likes }}
+            <span class="visually-hidden">лайки</span>
+          </span>
+        </button>
+    </form>
+</div>
+
+<div class="container">
+    <h3>Комментарии</h3>
+    {% if comments %}
+        <ul class="comment-list">
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <strong>{{ comment.user }}</strong>
+                        <span class="comment-date">{{ comment.created_at | date:'d.m.Y H:i:s' }}</span>
+                    </div>
+                    <p class="comment-text">{{ comment.text }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-comments-message">Пока нет комментариев.</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <div class="comment-form-container">
+            <form method="post" action="{% url 'articles:add_comment' article.id %}" class="comment-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comment_text">
+                        <textarea name="comment_text" placeholder="Добавить комментарий"></textarea>
+                    </label>
+                </div>
+                <button class="send-btn" type="submit">Опубликовать комментарий</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+
 {% endblock %}
 
-{% block footer %}
-{% endblock %}

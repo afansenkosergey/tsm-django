@@ -7,7 +7,7 @@ from .models import Article, Author
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'likes', 'is_popular')
-    search_fields = ('title', 'authors', 'content__text')
+    search_fields = ('title', 'authors', 'text')
     readonly_fields = ('likes',)
     fieldsets = (
         ('Поля для заполнения:', {

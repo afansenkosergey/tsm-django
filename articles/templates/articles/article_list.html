@@ -1,9 +1,11 @@
 {% extends 'articles/base.html' %}
 
+{% block title %}Home{% endblock %}
+{% block head %}{% endblock %}
 {% block body %}
-    <div class="container2">
-        <div class="article">
-             <h2>All Articles:</h2>
+        <div class="container2">
+            <div class="article">
+             <h2>Все статьи:</h2>
                 <ul>
                     {% if articles %}
                         {% for article in articles %}
@@ -16,3 +18,4 @@
         </div>
     </div>
 {% endblock %}
+

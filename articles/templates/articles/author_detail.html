@@ -1,6 +1,6 @@
 {% extends 'articles/base.html' %}
 {% load static %}
-
+{% block title %}{{ author.last_name }} {{ author.first_name }}{% endblock %}
 {% block body %}
     <div class="container4">
         <img src="{% static 'articles/images/author.png' %}" alt="{{ author.first_name }} {{ author.last_name }}" class="author-photo">
