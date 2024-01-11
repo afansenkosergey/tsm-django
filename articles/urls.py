@@ -10,6 +10,7 @@ urlpatterns = [
     path('addarticle', views.add_article, name='add_article'),
     path('article/<int:article_id>/add_comment/', views.add_comment, name='add_comment'),
     path('author/<int:author_id>/', views.author_detail, name='author_detail'),
+    path('user/<str:username>/', views.user_detail, name='user_detail'),
     path('authors/', views.authors_page, name='authors_page'),
     path('register/', views.register_page, name='register'),
     path('login/', views.login_page, name='login'),

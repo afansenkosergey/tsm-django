@@ -12,43 +12,31 @@
         </div>
 
         <div class="form-section">
-            <h2>Hi, Friend!</h2>
-            <p>Welcome to our Article Sender form!</p>
-            <form class="add_article" action="{% url 'articles:add_article' %}" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="{{ article_form.title.id_for_label }}">Title:</label>
-                    <input type="text" id="{{ article_form.title.id_for_label }}" name="{{ article_form.title.name }}"
-                           required autocomplete="off" placeholder="Title">
-                </div>
-                <div class="form-group">
-                    <label for="{{ author_form.first_name.id_for_label }}">Author:</label>
-                    <input type="text" id="{{ author_form.first_name.id_for_label }}"
-                           name="{{ author_form.first_name.name }}" required autocomplete="off" placeholder="First name">
-                    <label for="{{ author_form.last_name.id_for_label }}"></label>
-                    <input type="text" id="{{ author_form.last_name.id_for_label }}"
-                           name="{{ author_form.last_name.name }}" required autocomplete="off" placeholder="Last name">
-                    <label for="{{ author_form.date_of_birth.id_for_label }}"></label>
-                    <input type="date" id="{{ author_form.date_of_birth.id_for_label }}"
-                           name="{{ author_form.date_of_birth.name }}" required autocomplete="off"
-                           placeholder="Date of birth">
-                </div>
-                <div class="form-group">
-                    <label for="{{ article_form.text.id_for_label }}">Text:</label>
-                    <textarea id="{{ article_form.text.id_for_label }}" name="{{ article_form.text.name }}" required
-                              spellcheck="false" autocomplete="off"
-                              placeholder="Your Text..."></textarea>
-                </div>
-                <div class="form-group result-container">
-                    <button type="submit" class="send-btn">Send articles</button>
-                </div>
-            </form>
-            {% if form_submitted %}
-                <div class="alert alert-success" role="alert">
-                    Form submitted successfully!
-                </div>
-            {% endif %}
+    <h2>Hi, {{ request.user.username }}!</h2>
+    <p>Welcome to our Article Sender form!</p>
+    <form class="add_article" action="{% url 'articles:add_article' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ article_form.title.id_for_label }}">Title:</label>
+            <input type="text" id="{{ article_form.title.id_for_label }}" name="{{ article_form.title.name }}"
+                   required autocomplete="off" placeholder="Title" value="{{ article_form.title.value|default:''|upper }}">
         </div>
+        <div class="form-group">
+            <label for="{{ article_form.text.id_for_label }}">Text:</label>
+            <textarea id="{{ article_form.text.id_for_label }}" name="{{ article_form.text.name }}" required
+                      spellcheck="false" autocomplete="off"
+                      placeholder="Your Text..."></textarea>
+        </div>
+        <div class="form-group result-container">
+            <button type="submit" class="send-btn">Send articles</button>
+        </div>
+    </form>
+    {% if form_submitted %}
+        <div class="alert alert-success" role="alert">
+            Form submitted successfully!
+        </div>
+    {% endif %}
+</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 {% endblock %}

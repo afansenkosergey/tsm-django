@@ -1,0 +1,15 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block body %}
+    <div class="container4">
+        <img src="{% static 'articles/images/author.png' %}" alt="{{ user.username }}" class="author-photo">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <h2>Статьи:</h2>
+        <ul>
+            {% for article in articles %}
+                <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

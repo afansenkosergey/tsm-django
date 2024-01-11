@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from articles.models import Article
 from django.test import TestCase
 from django.urls import reverse
@@ -51,3 +53,38 @@ class ArticleModelTestCase(TestCase):
     def test_is_popular_returns_false_for_zero_likes(self):
         article = Article.objects.create(title='Unliked Article', text='Article Content', likes=0)
         self.assertFalse(article.is_popular())
+
+
+class RegistrationAuthenticationTests(TestCase):
+    def test_registration(self):
+        response = self.client.post(reverse('articles:register'), {
+            'username': 'test',
+            'first_name': 'First',
+            'last_name': 'Last',
+            'email': 'test@example.com',
+            'password1': 'test123test',
+            'password2': 'test123test',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(User.objects.count(), 1)
+
+    def test_authentication(self):
+        user = User.objects.create_user(username='test', password='test123')
+
+        response = self.client.post(reverse('articles:login'), {
+            'username': 'test',
+            'password': 'test123',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue('_auth_user_id' in self.client.session)
+
+    def test_add_article(self):
+        user = User.objects.create_user(username='test', password='test123')
+        self.client.login(username='test', password='test123')
+
+        response = self.client.post(reverse('articles:add_article'), {
+            'title': 'Test Article',
+            'text': 'This is a test article.',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Article.objects.count(), 1)

@@ -8,22 +8,84 @@ from .models import Article, Author
 
 
 class ArticleListView(ListView):
+    """
+    Представление для отображения списка статей.
+
+    Attributes:
+        model (Article): Модель, используемая для получения данных.
+        template_name (str): Имя шаблона, используемого для отображения списка статей.
+        context_object_name (str): Имя переменной контекста, содержащей объекты статей.
+
+    """
     model = Article
     template_name = 'articles/article_list.html'
     context_object_name = 'articles'
 
 
 def author_detail(request, author_id: int):
+    """
+    Представление для отображения подробной информации об авторе.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+        author_id (int): Идентификатор автора.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы с информацией об авторе.
+
+    """
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'articles/author_detail.html', {'author': author})
 
 
 def authors_page(request):
+    """
+    Представление для отображения страницы с информацией об авторах, пользователях и статьях.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы с информацией об авторах, пользователях и статьях.
+
+    """
     authors = Author.objects.all()
-    return render(request, 'articles/authors_page.html', {'authors': authors})
+    users = User.objects.all()
+    articles = Article.objects.all()
+
+    return render(request, 'articles/authors_page.html',
+                  {'authors': authors, 'users': users, 'articles': articles, 'user': request.user})
+
+
+def user_detail(request, username: str):
+    """
+    Представление для отображения информации о пользователе и его статьях.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+        username (str): Имя пользователя.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы с информацией о пользователе и его статьях.
+
+    """
+    user = get_object_or_404(User, username=username)
+    articles = Article.objects.filter(user=user)
+    return render(request, 'articles/user_detail.html', {'user': user, 'articles': articles})
 
 
 def like(request, article_id: int):
+    """
+    Вьюха для обработки лайков для статей.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+        article_id (int): Идентификатор статьи.
+
+    Returns:
+        HttpResponse: Перенаправление на страницу деталей статьи.
+
+    """
     article = get_object_or_404(Article, id=article_id)
     liked_articles = request.session.get('liked_articles', [])
     if article_id in liked_articles:
@@ -39,29 +101,59 @@ def like(request, article_id: int):
 
 @login_required(login_url='articles:login')
 def add_article(request):
+    """
+    Вьюха для добавления новой статьи.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+
+    Returns:
+        HttpResponse: Ответ с отображением формы добавления статьи или перенаправление на список статей.
+
+    """
     if request.method == 'POST':
         article_form = ArticleForm(request.POST)
-        author_form = AuthorForm(request.POST)
-        if article_form.is_valid() and author_form.is_valid():
-            author = author_form.save()
+        if article_form.is_valid():
             article = article_form.save(commit=False)
-            article.author = author
+            article.user = request.user
             article.save()
             return redirect('articles:list')
     else:
         article_form = ArticleForm()
-        author_form = AuthorForm()
 
-    return render(request, 'articles/add_article.html', {'article_form': article_form, 'author_form': author_form})
+    return render(request, 'articles/add_article.html', {'article_form': article_form})
 
 
-def article_detail(request, article_id):
+def article_detail(request, article_id: int):
+    """
+    Представление для отображения подробной информации о статье и ее комментариях.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+        article_id (int): Идентификатор статьи.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы с информацией о статье и комментариях.
+
+    """
     article = get_object_or_404(Article, id=article_id)
     comment = Comment.objects.filter(article=article)
-    return render(request, 'articles/article_detail.html', {'article': article, 'comments': comment})
+    return render(request, 'articles/article_detail.html',
+                  {'article': article, 'comments': comment, 'user': request.user})
 
 
-def add_comment(request, article_id):
+def add_comment(request, article_id: int):
+    """
+    Вьюха для добавления комментария к статье.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+        article_id (int): Идентификатор статьи.
+
+    Returns:
+        HttpResponse: Перенаправление на страницу деталей статьи.
+
+    """
     if request.method == 'POST':
         article = get_object_or_404(Article, id=article_id)
         user = request.user
@@ -75,21 +167,40 @@ def add_comment(request, article_id):
 # Registration and authentication
 
 def register_page(request):
-    form = UserCreationForm()
+    """
+    Вьюха для отображения страницы регистрации нового пользователя.
 
+    Args:
+        request (HttpRequest): Запрос от клиента.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы регистрации и формы.
+
+    """
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Account created successfully!')
             return redirect('articles:login')
         else:
-            messages.error(request, 'Form is invalid!')
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
+            messages.warning(request, 'Form is invalid!')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 
 def login_page(request):
+    """
+    Вьюха для отображения страницы входа пользователя в систему.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+
+    Returns:
+        HttpResponse: Ответ с отображением страницы входа и формы.
+
+    """
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -98,10 +209,20 @@ def login_page(request):
             login(request, user)
             return redirect('articles:list')
         else:
-            messages.error(request, 'Invalid username or password')
+            messages.warning(request, 'Invalid username or password')
     return render(request, 'registration/login.html')
 
 
 def logout_page(request):
+    """
+    Вьюха для выхода пользователя из системы.
+
+    Args:
+        request (HttpRequest): Запрос от клиента.
+
+    Returns:
+        HttpResponse: Перенаправление на страницу списка статей.
+
+    """
     logout(request)
     return redirect('articles:list')
