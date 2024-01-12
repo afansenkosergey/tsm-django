@@ -67,10 +67,6 @@ class Article(models.Model):
     def is_popular(self):
         return self.likes > 100
 
-    def save(self, *args, **kwargs):
-        self.title = self.title.upper()
-        super().save(*args, **kwargs)
-
     class Meta:
         verbose_name = 'Список статей'
         verbose_name_plural = 'Список статей'

@@ -6,27 +6,22 @@ from .models import Product, Category
 class HomePageView(View):
     def get(self, request):
         categories = Category.objects.all()
-        context = {
-            'categories': categories
-        }
-        return render(request, 'shop/home.html',  context=context)
+        return render(request, 'shop/home.html', {'categories': categories})
 
 
 class CategoryPageView(View):
     def get(self, request, pk):
         category = Category.objects.get(pk=pk)
         products = Product.objects.filter(category=category)
-        context = {
-            'category': category,
-            'products': products
-        }
-        return render(request, 'shop/category.html', context=context)
+        return render(request, 'shop/category.html', {'category': category, 'products': products})
 
 
 class ProductPageView(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
-        context = {
-            'product': product
-        }
-        return render(request, 'shop/product.html', context=context)
+        return render(request, 'shop/product.html', {'product': product})
+
+
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'shop/category_list.html', {'categories': categories})

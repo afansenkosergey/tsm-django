@@ -9,7 +9,7 @@
         <p>Статьи автора:</p>
             <ul>
                 {% for article in user.article_set.all %}
-                    <li><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></li>
+                    <li><a href="{% url 'articles:detail' article.id %}">{{ article.title| upper }}</a></li>
                 {% endfor %}
             </ul>
         {% for author in authors %}

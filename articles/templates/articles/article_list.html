@@ -9,7 +9,7 @@
                 <ul>
                     {% if articles %}
                         {% for article in articles %}
-                            <p><a href="{% url 'articles:detail' article.id %}">{{ article.title }}</a></p>
+                            <p><a href="{% url 'articles:detail' article.id %}">{{ article.title| upper }}</a></p>
                         {% endfor %}
                     {% else %}
                         <h1>There are no articles</h1>

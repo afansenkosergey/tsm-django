@@ -50,3 +50,7 @@ def create_question(request):
     else:
         form = QuestionForm()
     return render(request, 'polls/create_question.html', {'form': form})
+
+
+def category_list(request):
+    return None

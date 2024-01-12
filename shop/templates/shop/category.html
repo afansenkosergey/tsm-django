@@ -1,18 +1,17 @@
-{% extends 'shop/base.html' %}
+{% extends 'articles/base.html' %}
 
-{% block title %}
-{% endblock %}
+{% block title %}Категория: {{ category.name }}{% endblock %}
 
 {% block body %}
-    <h1>{{ category.name }}</h1>
-        <ul>
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ category.name }}</h1>
+        <ul class="list-group">
             {% for product in products %}
-                <br><a href="{% url 'shop:product' product.pk %}">{{ product.name }}</a>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'shop:product' product.pk %}" class="text-decoration-none text-dark">{{ product.name }}</a>
+                    <span class="badge badge-primary badge-pill">{{ product.price }}p</span>
+                </li>
             {% endfor %}
         </ul>
-
-{% endblock %}
-
-{% block footer %}
-
+    </div>
 {% endblock %}
