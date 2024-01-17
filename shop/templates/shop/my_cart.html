@@ -42,8 +42,6 @@
 
         <p class="total">Сумма заказа: <span id="totalAmount" class="font-weight-bold">{{ total_amount }} руб.</span>
         </p>
-
-
         <form class="form-inline" action="{% url 'shop:process_order' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-success">Оформить заказ</button>
