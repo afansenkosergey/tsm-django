@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView
@@ -163,66 +164,3 @@ def add_comment(request, article_id: int):
 
     return redirect('articles:detail', article_id=article_id)
 
-
-# Registration and authentication
-
-def register_page(request):
-    """
-    Вьюха для отображения страницы регистрации нового пользователя.
-
-    Args:
-        request (HttpRequest): Запрос от клиента.
-
-    Returns:
-        HttpResponse: Ответ с отображением страницы регистрации и формы.
-
-    """
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Account created successfully!')
-            return redirect('articles:login')
-        else:
-            messages.warning(request, 'Form is invalid!')
-    else:
-        form = RegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
-
-
-def login_page(request):
-    """
-    Вьюха для отображения страницы входа пользователя в систему.
-
-    Args:
-        request (HttpRequest): Запрос от клиента.
-
-    Returns:
-        HttpResponse: Ответ с отображением страницы входа и формы.
-
-    """
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('articles:list')
-        else:
-            messages.warning(request, 'Invalid username or password')
-    return render(request, 'registration/login.html')
-
-
-def logout_page(request):
-    """
-    Вьюха для выхода пользователя из системы.
-
-    Args:
-        request (HttpRequest): Запрос от клиента.
-
-    Returns:
-        HttpResponse: Перенаправление на страницу списка статей.
-
-    """
-    logout(request)
-    return redirect('articles:list')

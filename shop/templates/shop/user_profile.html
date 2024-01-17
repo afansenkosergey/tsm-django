@@ -1,0 +1,43 @@
+{% extends 'articles/base.html' %}
+
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+        <h2 class="mb-4">Информация о пользователе</h2>
+
+        <div class=" justify-content-end mt-4">
+            <a href="{% url 'authandreg:update_profile' %}" class="btn btn-primary mt-4">Изменить профиль</a>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Имя:</strong> {{ user.first_name }}</li>
+                    <li class="list-group-item"><strong>Фамилия:</strong> {{ user.last_name }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class=" justify-content-end mt-4">
+            <a href="{% url 'shop:order_history' %}" class="btn btn-warning mt-4">Все заказы</a>
+        </div>
+        <h3 class="mt-4">Последние 5 заказов</h3>
+        <ul class="list-group">
+            {% for order in orders %}
+                <li class="list-group-item">
+                    <div class="justify-content-between align-items-center">
+                        <span>Заказ №{{ order.id }} - Статус: {{ order.status }}</span>
+                        <span class="badge bg-primary">Общая сумма: {{ order.total_amount }} руб.</span>
+                        <span class="badge bg-secondary">Количество товаров: {{ order.total_quantity }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

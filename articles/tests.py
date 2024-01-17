@@ -43,7 +43,7 @@ class ArticlesDetailPageTestCase(TestCase):
 class ArticleModelTestCase(TestCase):
 
     def test_is_popular_returns_true_for_likes_over_100(self):
-        article = Article.objects.create(title='Popular Article', text='Article Content', likes=120)
+        article = Article.objects.create(title='Popular Article', text='Article Content', likes=110)
         self.assertTrue(article.is_popular())
 
     def test_is_popular_returns_false_for_likes_under_100(self):
@@ -57,7 +57,7 @@ class ArticleModelTestCase(TestCase):
 
 class RegistrationAuthenticationTests(TestCase):
     def test_registration(self):
-        response = self.client.post(reverse('articles:register'), {
+        response = self.client.post(reverse('authandreg:register'), {
             'username': 'test',
             'first_name': 'First',
             'last_name': 'Last',
@@ -71,7 +71,7 @@ class RegistrationAuthenticationTests(TestCase):
     def test_authentication(self):
         user = User.objects.create_user(username='test', password='test123')
 
-        response = self.client.post(reverse('articles:login'), {
+        response = self.client.post(reverse('authandreg:login'), {
             'username': 'test',
             'password': 'test123',
         })

@@ -3,7 +3,7 @@
 {% block body %}
 
 <main class="form-line w-50 mx-auto text-center">
-  <form method="post" action="{% url 'articles:login' %}">
+  <form method="post" action="{% url 'authandreg:login' %}">
     {% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Login in</h1>
 
@@ -29,7 +29,7 @@
       	<input class="btn btn-success col-md-6 py-2" type="submit" value="Login">
   </form>
 <div class="container signin">
-    <p>You don't have an account? <a href="{% url 'articles:register' %}">Register</a></p>
+    <p>You don't have an account? <a href="{% url 'authandreg:register' %}">Register</a></p>
   </div>
 </main>
 {% endblock %}

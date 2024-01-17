@@ -4,17 +4,26 @@
 {% block head %}{% endblock %}
 {% block body %}
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ product.name }}</h2>
-                        <p class="card-text">{{ product.description }}</p>
-                        <p class="text-muted">Category: <a href="{% url 'shop:category' product.category.pk %}">{{ product.category.name }}</a></p>
-                        <p class="font-weight-bold">Цена: {{ product.price }}p.</p>
-                    </div>
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ product.name }}</h2>
+                <p class="card-text">{{ product.description }}</p>
+                <p class="text-muted">Category: <a
+                        href="{% url 'shop:category' product.category.pk %}">{{ product.category.name }}</a></p>
+                    <p class="font-weight-bold">Цена: {{ product.price }}p.</p>
+                      <div>
+                    <form method="post" action="{% url 'shop:add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                    </form>
+                    <a class="btn btn-warning m-lg-2 " href="{% url 'shop:my_cart' %}">Прейти в корзину</a>
                 </div>
             </div>
         </div>
+
+
     </div>
 {% endblock %}
+

@@ -59,7 +59,7 @@ class Article(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации")
     likes = models.IntegerField(default=0, verbose_name="Количество лайков")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
@@ -83,7 +83,7 @@ class Comment(models.Model):
         text (str): Текст комментария.
         created_at (DateTime): Дата и время создания комментария.
     """
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, default=1)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
