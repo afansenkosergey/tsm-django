@@ -74,9 +74,10 @@ def my_cart(request):
     order = Order.objects.filter(profile=profile, status=Order.Status.INITIAL).first()
     if not order:
         order = Order.objects.create(profile=profile, status=Order.Status.INITIAL)
+    entries = order.entries.all().order_by('product__id')
     total_amount = sum(entry.count * entry.product.price for entry in order.entries.all())
     return render(request, 'shop/my_cart.html',
-                  {'order': order, 'total_amount': total_amount, 'categories': categories})
+                  {'order': order, 'total_amount': total_amount, 'categories': categories, 'entries': entries,})
 
 
 @login_required
