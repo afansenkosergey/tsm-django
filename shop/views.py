@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 from .models import Product, Category, Order, OrderEntry, Profile
 
@@ -171,6 +172,7 @@ def order_history(request):
         entries = order.entries.all()
         order.total_quantity = sum(entry.count for entry in entries)
         order.total_amount = sum(entry.product.price * entry.count for entry in entries)
+        order.product_links = [reverse('shop:product', args=[entry.product.id]) for entry in entries]
 
     return render(request, 'shop/order_history.html', {'orders': orders, 'categories': categories})
 
