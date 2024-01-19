@@ -11,7 +11,6 @@ def category_detail(request, pk):
     """
         Отображает подробную информацию о конкретной категории и ее продуктах.
     """
-
     categories = Category.objects.all()
     category = Category.objects.get(pk=pk)
     products = Product.objects.filter(category=category)
@@ -78,7 +77,7 @@ def my_cart(request):
     entries = order.entries.all().order_by('product__id')
     total_amount = sum(entry.count * entry.product.price for entry in order.entries.all())
     return render(request, 'shop/my_cart.html',
-                  {'order': order, 'total_amount': total_amount, 'categories': categories, 'entries': entries,})
+                  {'order': order, 'total_amount': total_amount, 'categories': categories, 'entries': entries, })
 
 
 @login_required
