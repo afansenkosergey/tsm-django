@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="{% static 'articles/css/add_article.css' %}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+            integrity="sha384-aSmgF0J4uL+3uxUrlT6Zfb3W9yGDKX3Yi5QnjhI5Asj0A6b3UggJp1yv4xXpFMNQ"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-5 bg-white border-bottom">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Articles
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'articles:list' %}">All article</a></li>
+                            <li><a class="dropdown-item" href="{% url 'articles:add_article' %}">Add articles</a></li>
+                            <li><a class="dropdown-item" href="{% url 'articles:authors_page' %}">All authors</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Shop
+                        </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'shop:category_list' %}">All products</a></li>
+                                <li>&nbsp&nbsp&nbspCategories:</li>
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item"
+                                           href="{% url 'shop:category' category.id %}">{{ category.name }}</a></li>
+                                {% endfor %}
+                                <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Pools
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Действие</a></li>
+                            <li><a class="dropdown-item" href="#">Другое действие</a></li>
+                            <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% if user.is_authenticated %}
+            <div class="col-md-9 text-end">
+                <div class="d-flex align-items-end justify-content-end">
+                    <p class="me-3 mb-1">Привет,
+                    <a type="button"href="{% url 'shop:user_profile' %}">{{ request.user }}</a>
+                    </p>
+                    <a type="button" class="btn btn-primary me-2" href="{% url 'shop:my_cart' %}">Корзина</a>
+                    <a type="button" class="btn btn-danger" href="{% url 'authandreg:logout' %}">Выйти</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-md-9 text-end">
+                <a type="button" class="btn btn-success me-2" href="{% url 'authandreg:login' %}">Login</a>
+                <a type="button" class="btn btn-primary" href="{% url 'authandreg:register' %}">Register</a>
+            </div>
+        {% endif %}
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+</div>
+
+
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+    </ul>
+    <p class="text-center text-body-secondary">© 2023 TeachMeSkills, Created by: Afanasenko Sergey</p>
+</footer>
+
+
+</body>
+</html>
+

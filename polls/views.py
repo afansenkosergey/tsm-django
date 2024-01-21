@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
+from django.views.decorators.cache import cache_page
 from .forms import QuestionForm
 from .models import Question, Choice
+
 
 
 def index(request: HttpResponse):

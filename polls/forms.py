@@ -8,3 +8,6 @@ class QuestionForm(forms.Form):
     publication_date = forms.DateField(initial=timezone.now().date(),
                                        widget=forms.SelectDateWidget)
     choices = forms.ChoiceField(label='Choices', widget=forms.Textarea)
+
+
+

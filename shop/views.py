@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.views.decorators.cache import cache_page
 
 from .models import Product, Category, Order, OrderEntry, Profile
 
@@ -109,8 +110,13 @@ def clear_cart(request):
     """
         Очищает все продукты из корзины пользователя.
     """
-    OrderEntry.objects.all().delete()
+    profile = Profile.objects.get(user=request.user)
+    order = Order.objects.filter(profile=profile, status=Order.Status.INITIAL).first()
+    if order:
+        order.entries.all().delete()
     return redirect('shop:my_cart')
+    # OrderEntry.objects.all().delete()
+    # return redirect('shop:my_cart')
 
 
 @login_required

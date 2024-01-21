@@ -4,9 +4,9 @@ from shop.views import *
 
 app_name = 'shop'
 urlpatterns = [
+    path('', category_list, name='category_list'),
     path('category/<int:pk>', category_detail, name='category'),
     path('product/<int:pk>', product_page, name='product'),
-    path('categories/', category_list, name='category_list'),
     path('my_cart/', my_cart, name='my_cart'),
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('my_cart/', my_cart, name='my_cart'),
