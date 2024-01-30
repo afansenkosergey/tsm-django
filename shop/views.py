@@ -33,7 +33,7 @@ def category_list(request):
      Отображает список всех категорий.
     """
     categories = Category.objects.all()
-    paginator = Paginator(categories, 4)
+    paginator = Paginator(categories, 10)
     page = request.GET.get('page')
     try:
         categories = paginator.page(page)

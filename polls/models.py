@@ -7,6 +7,8 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published', default=timezone.now)
 
     def was_published_recently(self):
+        if not self.pub_date:
+            return False
         now = timezone.now()
         return now - timezone.timedelta(days=1) <= self.pub_date <= now
 

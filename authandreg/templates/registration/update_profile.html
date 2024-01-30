@@ -1,4 +1,4 @@
-{% extends 'articles/../../../templates/common/../../../articles/templates/articles/base.html' %}
+{% extends 'articles/base.html' %}
 {% block title %}Обновление профиля{% endblock %}
 {% block body %}
 <div class="container mt-4">
@@ -21,7 +21,6 @@
             <input type="text" name="last_name" id="id_last_name" class="form-control" value="" required>
         </div>
 
-        <!-- Добавьте другие поля профиля, если необходимо -->
 
         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
     </form>

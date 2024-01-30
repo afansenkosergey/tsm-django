@@ -26,13 +26,16 @@ SECRET_KEY = 'django-insecure-byqmynw*yetuq30c6-lmnb#e-7ot83neq*x_v*na3$1i7gov-w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 ATOMIC_REQUESTS = True
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+    'api',
+    'rest_framework',
     'authandreg',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +57,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -142,3 +151,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('articles:list')
 #    }
 # }
 
+
+REST_FRAMEWORK = {
+  'DEFAULT_PAGINATION_CLASS': 'api.pagination.DefaultPagination',
+}
