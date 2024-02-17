@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-byqmynw*yetuq30c6-lmnb#e-7ot83neq*x_v*na3$1i7gov-w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -33,6 +33,7 @@ ATOMIC_REQUESTS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework_simplejwt',
     'corsheaders',
     'api',
     'rest_framework',
@@ -153,4 +154,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('articles:list')
 
 REST_FRAMEWORK = {
   'DEFAULT_PAGINATION_CLASS': 'api.pagination.DefaultPagination',
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
