@@ -1,15 +1,16 @@
 import json
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+import sys
 
-import django
-django.setup()
+# Добавляем путь к каталогу проекта в sys.path
+sys.path.append('/app')  # Замените '/app' на актуальный путь к вашему Django-проекту
+
+# Настройка переменной окружения DJANGO_SETTINGS_MODULE
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
 from polls.models import Question, Choice
 
-
-
-with open('polls_data.json', 'r') as file:
+with open('add_to_db/polls_data.json', 'r') as file:
     data = json.load(file)
 
 for question_text, choices_data in data.items():

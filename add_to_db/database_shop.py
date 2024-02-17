@@ -1,12 +1,16 @@
 import json
 import os
+import sys
+
+# Добавляем путь к каталогу проекта в sys.path
+sys.path.append('/app')  # Замените '/app' на актуальный путь к вашему Django-проекту
+
+# Настройка переменной окружения DJANGO_SETTINGS_MODULE
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-import django
-django.setup()
 from shop.models import Category, Product
 
 
-with open('shop.json', 'r') as file:
+with open('add_to_db/shop.json', 'r') as file:
     data = json.load(file)
 
 # Создаем категории

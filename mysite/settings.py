@@ -26,13 +26,14 @@ SECRET_KEY = 'django-insecure-byqmynw*yetuq30c6-lmnb#e-7ot83neq*x_v*na3$1i7gov-w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 
 ATOMIC_REQUESTS = True
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'rest_framework_simplejwt',
     'corsheaders',
     'api',
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
+    'polls',
     'articles.apps.ArticlesConfig',
     'shop.apps.ShopConfig',
 
@@ -97,7 +98,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         'PASSWORD': 'django',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 5432,
     }
 }
@@ -158,3 +159,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

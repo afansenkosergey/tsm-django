@@ -1,12 +1,16 @@
 import json
 import os
+import sys
+
+# Добавляем путь к каталогу проекта в sys.path
+sys.path.append('/app')  # Замените '/app' на актуальный путь к вашему Django-проекту
+
+# Настройка переменной окружения DJANGO_SETTINGS_MODULE
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-import django
-django.setup()
 from articles.models import Author, Article
 
 # Открываем JSON-файл для чтения
-with open('articles.json', 'r') as file:
+with open('add_to_db/articles.json', 'r') as file:
     data = json.load(file)
 
 # Создаем авторов и статьи
