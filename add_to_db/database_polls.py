@@ -17,3 +17,5 @@ for question_text, choices_data in data.items():
 
     for choice_text, votes in choices_data.items():
         Choice.objects.create(question=question, choice_text=choice_text, votes=votes)
+
+print('Объекты успешно созданы.')

@@ -1,0 +1,107 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Смартфоны"
+    },
+    {
+      "id": 2,
+      "name": "Умные часы"
+    },
+    {
+      "id": 3,
+      "name": "Ноутбуки"
+    },
+    {
+      "id": 4,
+      "name": "Телевизоры"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Xiaomi Redmi Note 13 Pro+ 5G 12GB/512GB с NFC",
+      "description": "Android, экран 6.67\" AMOLED (1220x2712) 120 Гц, Mediatek Dimensity 7200 Ultra, ОЗУ 12 ГБ, память 512 ГБ, камера 200 Мп, аккумулятор 5000 мАч, 2 SIM (nano-SIM/eSIM), влагозащита IP68",
+      "price": "1700.00",
+      "category_id": 1
+    },
+    {
+      "name": "Apple iPhone 15 128GB (черный)",
+      "description": "Apple iOS, экран 6.1\" OLED (1179x2556) 60 Гц, Apple A16 Bionic, ОЗУ 6 ГБ, память 128 ГБ, камера 48 Мп, аккумулятор 3349 мАч, 1 SIM (nano-SIM/eSIM), влагозащита IP68",
+      "price": "2800.00",
+      "category_id": 1
+    },
+    {
+      "name": "Apple iPhone 13 128GB (темная ночь)",
+      "description": "Apple iOS, экран 6.1\" OLED (1170x2532) 60 Гц, Apple A15 Bionic, ОЗУ 4 ГБ, память 128 ГБ, камера 12 Мп, аккумулятор 3227 мАч, 1 SIM (nano-SIM/eSIM), влагозащита IP68",
+      "price": "2199.00",
+      "category_id": 1
+    },
+    {
+      "name": "Samsung Galaxy S23 SM-S911B/DS 8GB/128GB (черный фантом)",
+      "description": "Android, экран 6.1\" AMOLED (1080x2340) 120 Гц, Qualcomm Snapdragon 8 Gen2 SM8550, ОЗУ 8 ГБ, память 128 ГБ, камера 50 Мп, аккумулятор 3900 мАч, 2 SIM (nano-SIM/eSIM), влагозащита IP68",
+      "price": "2200.00",
+      "category_id": 1
+    },
+    {
+      "name": "Samsung Galaxy S23 Ultra SM-S918B/DS 12GB/256GB (черный фантом)\n",
+      "description": "Android, экран 6.8\" AMOLED (1440x3088) 120 Гц, Qualcomm Snapdragon 8 Gen2 SM8550, ОЗУ 12 ГБ, память 256 ГБ, камера 200 Мп, аккумулятор 5000 мАч, 2 SIM (nano-SIM/eSIM), влагозащита IP68\n\n",
+      "price": "3150.00",
+      "category_id": 1
+    },
+    {
+      "name": "Xiaomi Watch S1 Active (черный, международная версия)",
+      "description": "синхронизация с Android/iOS, экран AMOLED 1.43\", поддержка SIM-карты: нет, пульсометр, измерение кислорода в крови, GPS, Bluetooth 5.2, корпус: пластик/металл, ремешок: силикон\n\n",
+      "price": "399.00",
+      "category_id": 2
+    },
+    {
+      "name": "Apple Watch Series 8 41 мм (алюминиевый корпус, полуночный/полуночный, спортивный силиконовый ремешок S/M)",
+      "description": "синхронизация с iOS, экран AMOLED, поддержка SIM-карты: нет, пульсометр, измерение кислорода в крови, ЭКГ, AOD, GPS, Bluetooth 5.3, корпус: металл (алюминий), ремешок: силикон\n\n",
+      "price": "1249.00",
+      "category_id": 2
+    },
+    {
+      "name": "Samsung Galaxy Watch6 Classic 47 мм (черный)",
+      "description": "синхронизация с Android, экран AMOLED 1.5\", поддержка SIM-карты: нет, пульсометр, измерение кислорода в крови, AOD, GPS, Bluetooth 5.3, корпус: металл (сталь), ремешок: силикон\n\n",
+      "price": "1159.00",
+      "category_id": 2
+    },
+    {
+      "name": "HONOR MagicBook X 16 2024 BRN-F56 5301AHHM",
+      "description": "16.0\" 1920 x 1200, IPS, 60 Гц, Intel Core i5 12450H, 16 ГБ LPDDR4X, SSD 512 ГБ, видеокарта встроенная, без ОС, цвет крышки темно-серый, аккумулятор 60 Вт·ч\n\n",
+      "price": "2566.92",
+      "category_id": 3
+    },
+    {
+      "name": "Apple Macbook Pro 14.2\" M3 Pro 2023 MRX33",
+      "description": "14.2\" 3024 x 1964, IPS, 120 Гц, Apple M3 Pro (11 ядер), 18 ГБ, SSD 512 ГБ, видеокарта встроенная, Mac OS, цвет крышки черный, аккумулятор 70 Вт·ч\n\n",
+      "price": "8050.00",
+      "category_id": 3
+    },
+    {
+      "name": "Lenovo Legion 5 15ACH6H 82JU00THPB",
+      "description": "15.6\" 1920 x 1080, IPS, 165 Гц, AMD Ryzen 7 5800H, 16 ГБ DDR4, SSD 512 ГБ, видеокарта NVIDIA GeForce RTX 3060 6 ГБ (TGP 130 Вт), Windows 11 Home, цвет крышки темно-синий, аккумулятор 60 Вт·ч\n\n",
+      "price": "3095.00",
+      "category_id": 3
+    },
+    {
+      "name": "Xiaomi TV Q2 55\" (международная версия)",
+      "description": "55\" 3840x2160 (4K UHD), частота матрицы 60 Гц, Smart TV (Android TV), HDR10, HDR10+, Dolby Vision, HLG, DTS:HD, Dolby Atmos, Wi-Fi, смарт пульт",
+      "price": "1950.00",
+      "category_id": 4
+    },
+    {
+      "name": "Samsung OLED 4K S90C QE65S90CAUXRU",
+      "description": "65\" 3840x2160 (4K UHD), матрица OLED, частота матрицы 120 Гц, Smart TV (Samsung Tizen), HDR10, HDR10+, HLG, Dolby Atmos, AirPlay, Wi-Fi, смарт пульт",
+      "price": "6499.52",
+      "category_id": 4
+    },
+    {
+      "name": "LG C3 OLED65C3RLA",
+      "description": "65\" 3840x2160 (4K UHD), матрица OLED, частота матрицы 120 Гц, Smart TV (LG webOS), HDR10, Dolby Vision, HLG, Dolby Atmos, AirPlay, Wi-Fi, смарт пульт",
+      "price": "6090.00",
+      "category_id": 4
+    }
+  ]
+}
