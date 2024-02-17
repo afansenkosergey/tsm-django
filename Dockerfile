@@ -5,7 +5,7 @@ FROM python:3.11
 ENV PYTHONUNBUFFERED=1
 
 # Создание и переход в рабочую директорию в контейнере
-WORKDIR /TMS-django
+WORKDIR /app
 
 # Копирование зависимостей проекта в контейнер
 COPY requirements.txt /app/
