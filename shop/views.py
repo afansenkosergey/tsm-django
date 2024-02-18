@@ -129,6 +129,10 @@ def process_order(request):
         order = Order.objects.create(profile=profile, status=Order.Status.COMPLETED)
         if profile.shopping_cart.entries.exists():
             entries = profile.shopping_cart.entries.all()
+            # Проверка наличия товаров с количеством больше 0 в корзине
+            if not all(entry.count > 0 for entry in entries):
+                messages.warning(request, "Неверное количество товара")
+                return redirect('shop:my_cart')
             for entry in entries:
                 order.entries.create(product=entry.product, count=entry.count)
             profile.shopping_cart.entries.all().delete()

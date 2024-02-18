@@ -39,7 +39,15 @@
             {% endfor %}
             </tbody>
         </table>
-
+        <div class="mb-3 mx-1 col-md-3">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
         <p class="total">Сумма заказа: <span id="totalAmount" class="font-weight-bold">{{ total_amount }} руб.</span>
         </p>
         <form class="form-inline" action="{% url 'shop:process_order' %}" method="post">
