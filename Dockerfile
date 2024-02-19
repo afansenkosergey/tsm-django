@@ -19,7 +19,6 @@ COPY . /app/
 # Открываем порт, на котором будет работать Django
 EXPOSE 8000
 
-# Запуск команды для запуска Django сервера
-# CMD python3 manage.py runserver 0.0.0.0:8000
-#ENTRYPOINT ["sleep", "5", "&&", "python3", "manage.py", "runserver", "0.0.0.0:8000"]
-ENTRYPOINT ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN adduser --disabled-password app-user
+
+USER app-user

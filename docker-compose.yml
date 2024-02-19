@@ -8,15 +8,16 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - database
       - cache
     volumes:
       - .:/app
     networks:
       - mynetwork
-    restart: always
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
 
-  db:
+  database:
     image: postgres
     environment:
       - POSTGRES_DB=django
@@ -26,13 +27,11 @@ services:
       - mynetwork
     volumes:
       - pgdata:/var/lib/postgresql/data
-    restart: always
 
   cache:
     image: redis
     networks:
       - mynetwork
-    restart: always
 
 networks:
   mynetwork:
