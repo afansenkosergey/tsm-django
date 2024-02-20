@@ -1,0 +1,23 @@
+name: Docker Image CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker Image
+      run: docker build -t afanasenkosergey/app .
+
+    - name: Push Docker Image to Docker Hub
+      run: |
+        docker login -u afanasenkosergey -p dckr_pat_YFTaFVwPr-hl2a_VqYNsgZxSboc
+        docker tag afanasenkosergey/app afanasenkosergey/app:latest
+        docker push afanasenkosergey/app:latest
